@@ -36,7 +36,6 @@
                                 <tr class="">
                                     <td scope="row"><?=$value->getId()?> </td>
                                     <td><?=$value->getNomComplet()?> </td>
-
                                 </tr>
                                 <?php endforeach ?>
 
