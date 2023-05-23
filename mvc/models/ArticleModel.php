@@ -1,10 +1,18 @@
 <?php 
-abstract class ArticleModel{
+class ArticleModel extends Model{
  protected int $id;
  protected string $libelle;
  protected float $prixAchat;
  protected int $qteStock;
- protected string $type;
+ protected string $type="article";
+ protected int $categorieID;
+
+
+ public function __construct()
+ {
+     parent::__construct();
+     $this->table="article";
+ }
  /**
   * Get the value of libelle
   */ 
@@ -101,6 +109,47 @@ abstract class ArticleModel{
  public function setType($type)
  {
   $this->type = $type;
+
+  return $this;
+ }
+
+ 
+
+ //$this->table
+public function insert():int{
+   //$sql="select * from categorie where id=$id" ;Jamais
+   $sql="INSERT INTO $this->table values (NULL, :libelle, :prixAchat, :qteStock, :type, :dateProd, :fournisseur, :categorieID) ";//Requete preparee
+   //prepare ==> requete avec parametres
+   $stm= $this->pdo->prepare($sql);
+   $stm->execute(["libelle"=>$this->libelle,
+                  "prixAchat"=> $this->prixAchat,
+                  "qteStock"=>$this->qteStock,
+                  "type" => $this->type,
+                  "dateProd"=>NULL,
+                  "fournisseur"=>NULL,
+                  "categorieID"=>$this->categorieID
+       ]);
+   return  $stm->rowCount() ;
+}
+
+
+
+ /**
+  * Get the value of categorieID
+  */ 
+ public function getCategorieID()
+ {
+  return $this->categorieID;
+ }
+
+ /**
+  * Set the value of categorieID
+  *
+  * @return  self
+  */ 
+ public function setCategorieID($categorieID)
+ {
+  $this->categorieID = $categorieID;
 
   return $this;
  }

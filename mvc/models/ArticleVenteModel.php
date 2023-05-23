@@ -4,6 +4,7 @@ class ArticleVenteModel extends ArticleModel{
     public function __construct()
     {
        //parent::setType('ArticleConf');
+       
         $this->type='ArticleVente';
     }
 

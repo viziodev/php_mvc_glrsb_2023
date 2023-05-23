@@ -1,7 +1,14 @@
 <?php
- class CategorieModel{
+ class CategorieModel extends Model{
     private int $id;
     private string $libelle;
+
+     public function __construct()
+     {
+         parent::__construct();//
+         $this->table="categorie";
+     }
+     
     /**
      * Get the value of libelle
      */ 
@@ -41,4 +48,14 @@
 
         return $this;
     }
+
+     public function insert():int{
+        //$sql="select * from categorie where id=$id" ;Jamais
+        $sql="INSERT INTO $this->table (`id`, `libelle`) VALUES (NULL,:libelle)";//Requete preparee
+        //prepare ==> requete avec parametres
+        $stm= $this->pdo->prepare($sql);
+        $stm->execute(["libelle"=>$this->libelle]);
+        return  $stm->rowCount() ;
+     }
+    
  }
