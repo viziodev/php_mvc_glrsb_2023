@@ -116,7 +116,7 @@ class ArticleModel extends Model{
  
 
  //$this->table
-public function insert():int{
+public function insert($data=null):int{
    //$sql="select * from categorie where id=$id" ;Jamais
    $sql="INSERT INTO $this->table values (NULL, :libelle, :prixAchat, :qteStock, :type, :dateProd, :fournisseur, :categorieID) ";//Requete preparee
    //prepare ==> requete avec parametres
@@ -125,8 +125,8 @@ public function insert():int{
                   "prixAchat"=> $this->prixAchat,
                   "qteStock"=>$this->qteStock,
                   "type" => $this->type,
-                  "dateProd"=>NULL,
-                  "fournisseur"=>NULL,
+                  "dateProd"=>$this->type=="ArticleConf"?$data:NULL,
+                  "fournisseur"=>$this->type=="ArticleVente"?$data:NULL,
                   "categorieID"=>$this->categorieID
        ]);
    return  $stm->rowCount() ;
