@@ -7,11 +7,11 @@ class ArticleModel extends Model{
  protected string $type="article";
  protected int $categorieID;
 
-
  public function __construct()
  {
      parent::__construct();
      $this->table="article";
+ 
  }
  /**
   * Get the value of libelle
@@ -134,14 +134,13 @@ public function insert($data=null):int{
 
 
 
- /**
-  * Get the value of categorieID
-  */ 
+ 
+
+
  public function getCategorieID()
  {
-  return $this->categorieID;
+    return $this->categorieID;
  }
-
  /**
   * Set the value of categorieID
   *
@@ -152,5 +151,14 @@ public function insert($data=null):int{
   $this->categorieID = $categorieID;
 
   return $this;
+ }
+ //
+
+ public function findAll():array{
+    return $this->executeSelect("select * from $this->table where type like  :typeArt ",['typeArt'=>$this->type]);
+ }
+
+ public function findTypeArticles():array{
+    return $this->executeSelect("SELECT DISTINCT type FROM article" );
  }
 }

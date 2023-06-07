@@ -3,7 +3,7 @@ class ArticleVenteModel extends ArticleModel{
     private string  $dateProd;
     public function __construct()
     {
-       //parent::setType('ArticleConf');
+        parent::__construct();
         $this->type='ArticleVente';
     }
 
@@ -48,4 +48,8 @@ class ArticleVenteModel extends ArticleModel{
      public function insert($data=null):int{
         return parent::insert($this->dateProd);
      }
+
+
+     
+     
 }

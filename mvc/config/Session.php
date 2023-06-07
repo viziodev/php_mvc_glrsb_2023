@@ -1,7 +1,11 @@
 <?php 
 class Session{ 
   public static function start(){
+    //Session pas Ouverte
+    if(session_status()==PHP_SESSION_NONE){
       session_start();//Server cree le tableau $_SESSION
+    }
+     
   }
      //stocker  une valeur dans une  cle dans la session
   public static function set($key,$data){

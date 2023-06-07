@@ -4,7 +4,7 @@ class ArticleConfModel extends ArticleModel{
 
     public function __construct()
     {
-       //parent::setType('ArticleConf');
+        parent::__construct();
         $this->type='ArticleConf';
     }
     
@@ -50,4 +50,7 @@ class ArticleConfModel extends ArticleModel{
      public function insert($data=null):int{
         return parent::insert($this->fournisseur);
      }
+
+    
+     
 }

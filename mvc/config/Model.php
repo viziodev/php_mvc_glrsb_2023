@@ -31,21 +31,31 @@ class Model {
 
      //Methode Acces au donnees
  public function findAll():array{
-    $sql="select * from $this->table" ;
-    //query ==> requete sans parametres
-    $stm= $this->pdo->query($sql);
-    return $stm->fetchAll(\PDO::FETCH_CLASS,get_called_class());
+   return $this->executeSelect("select * from $this->table" );
 }
 
 public function findById(int $id):self{
-   //$sql="select * from categorie where id=$id" ;Jamais
-   $sql="select * from $this->table where id=:x";//Requete preparee
+  return  $this->executeSelect("select * from $this->table where id=:x",["x"=>$id],true);
+}
+
+
+public function executeSelect(string $sql,array $data=[],$single=false):array|self{
    //prepare ==> requete avec parametres
    $stm= $this->pdo->prepare($sql);
    $stm->setFetchMode(\PDO::FETCH_CLASS,get_called_class());
-   $stm->execute(["x"=>$id]);
-   return  $stm->fetch();
+   $stm->execute($data);
+   if($single){
+      return  $stm->fetch() ;
+   }else{
+      return $stm->fetchAll(\PDO::FETCH_CLASS,get_called_class()); 
+   }
+ 
 }
+
+public function executeUpdapte(string $sql,array $data=[],$single=false):int{
+     return 0;
+}
+
 
 public function remove(int $id):int{
    //$sql="select * from categorie where id=$id" ;Jamais
