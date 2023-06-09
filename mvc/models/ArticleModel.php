@@ -4,7 +4,7 @@ class ArticleModel extends Model{
  protected string $libelle;
  protected float $prixAchat;
  protected int $qteStock;
- protected string $type="article";
+ protected string $type;
  protected int $categorieID;
 
  public function __construct()
@@ -125,8 +125,8 @@ public function insert($data=null):int{
                   "prixAchat"=> $this->prixAchat,
                   "qteStock"=>$this->qteStock,
                   "type" => $this->type,
-                  "dateProd"=>$this->type=="ArticleConf"?$data:NULL,
-                  "fournisseur"=>$this->type=="ArticleVente"?$data:NULL,
+                  "dateProd"=>$this->type=="ArticleVente"?$data:NULL,
+                  "fournisseur"=>$this->type=="ArticleConf"?$data:NULL,
                   "categorieID"=>$this->categorieID
        ]);
    return  $stm->rowCount() ;

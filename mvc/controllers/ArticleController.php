@@ -2,7 +2,6 @@
 require_once './../models/ArticleModel.php';
 require_once './../models/ArticleVenteModel.php';
 require_once './../models/ArticleConfModel.php';
-
 require_once './../models/CategorieModel.php';
 
 class ArticleController extends Controller{
@@ -20,7 +19,6 @@ class ArticleController extends Controller{
         $this->articleConfModel=new ArticleConfModel;
         $this->articleModel=new articleModel;
         $this->categorieModel=new CategorieModel;
-        
       }
         public function index(){
            $articlesV=$this->articleVenteModel->findAll();
@@ -40,4 +38,39 @@ class ArticleController extends Controller{
             "types"=> $types,
           ]);
         }
+        
+        
+        public function save(){
+          //Validation  ou Controle de Saisie
+          Validator::isVide($_POST['libelle'],'libelle','Le Libelle est obligatoire');
+          Validator::isVide($_POST['categorie'],'categorie','La Categorie est obligatoire');
+          Validator::isVide($_POST['type'],'type','Le Type est obligatoire');
+          Validator::isNumberPositif($_POST['qteStock'],'qteStock');
+          Validator::isNumberPositif($_POST['prixAchat'],'prixAchat');
+          
+          if( Validator::validate()){
+             if($_POST['type']=="ArticleVente"){
+              Validator::isVide($_POST['dateProd'],'dateProd','La Date est obligatoire');
+            }else{
+              Validator::isVide($_POST['fournisseur'],'fournisseur','Le Fournisseur est obligatoire');
+              //
+            }
+
+            if(Validator::validate()){
+                  extract($_POST);
+                  $this->articleModel->setLibelle($libelle);
+                  $this->articleModel->setCategorieID($categorie);
+                  $this->articleModel->setPrixAchat($prixAchat);
+                  $this->articleModel->setQteStock($qteStock);
+                  $this->articleModel->setType($type);
+                  $data=$type=="ArticleVente"?$dateProd:$fournisseur;
+                  $this->articleModel->insert( $data);  
+                  $this->redirect("article");   
+            }
+          }
+               Session::set("errors",Validator::getErrors());
+                $this->redirect("show-form-article");  
+          //dateProd
+        }
+        
 }

@@ -39,11 +39,12 @@ public function findById(int $id):self{
 }
 
 
-public function executeSelect(string $sql,array $data=[],$single=false):array|self{
+public function executeSelect(string $sql,array $data=[],$single=false){
    //prepare ==> requete avec parametres
    $stm= $this->pdo->prepare($sql);
    $stm->setFetchMode(\PDO::FETCH_CLASS,get_called_class());
    $stm->execute($data);
+    // Helper::dd( $data);
    if($single){
       return  $stm->fetch() ;
    }else{

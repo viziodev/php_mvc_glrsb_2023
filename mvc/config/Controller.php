@@ -17,4 +17,9 @@ class Controller{
              $contentForview=ob_get_clean();
              require_once "./../views/".$this->layout.".layout.html.php"; 
     }
+
+    public function redirect(string $path){
+         header("location:".BASE_URL."?page=$path");
+         exit(); 
+    }
 }

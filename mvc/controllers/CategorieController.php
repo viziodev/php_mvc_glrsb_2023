@@ -26,7 +26,8 @@ class CategorieController extends Controller{
         }
           Session::set("errors",$errors);
         //Redirection
-         header("location:".BASE_URL."?page=categorie");
+        // header("location:".BASE_URL."?page=categorie");
+         $this->redirect("categorie");
     }
     public function index(){
       $categories=$this->categorieModel->findAll();
@@ -37,7 +38,7 @@ class CategorieController extends Controller{
        
     }
 
-
+    
 
 
 }

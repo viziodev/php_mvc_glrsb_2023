@@ -10,4 +10,11 @@ class Helper{
       self::dump($data);
       die;
    }
+
+     public static function errorField(array $error,$field){
+        if(array_key_exists($field,$error)) echo"is-invalid"  ; 
+    }
+    public static function errorMessage(array $error,$field){
+      if(array_key_exists($field,$error)) echo "invalid-feedback"; 
+    }
 }
