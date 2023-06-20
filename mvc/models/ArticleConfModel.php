@@ -51,6 +51,9 @@ class ArticleConfModel extends ArticleModel{
         return parent::insert($this->fournisseur);
      }
 
-    
+     public function getLibelle()
+     {
+         return $this->libelle;
+     } 
      
 }

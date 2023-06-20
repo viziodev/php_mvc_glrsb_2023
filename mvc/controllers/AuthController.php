@@ -21,9 +21,18 @@ class AuthController extends Controller{
         Validator::isVide($_POST['password'],'password');
         if(Validator::validate()){
              extract($_POST);
-             $user= $this->userModel->findUserByLoginAndPassword($login,$password) ; 
+             $user= $this->userModel->findUserByLoginAndPassword($login,$password) ;
              if($user){
-                  $this->redirect("categorie");  
+               //Garder dans la session utilisateur connecter
+               //Authentification Stafull
+               //Stocke un tableau ou donnee elementaire    
+                  Session::set("user",Helper::toArray($user));
+                  if(Autorisation::hasRole("Admin")){
+                    $this->redirect("categorie"); 
+                  }else{
+                    $this->redirect("article"); 
+                  }
+                  
              }else{
                 Validator::addErrors("error-connexion","Login ou Mot de Passe Incorrect");
              }
@@ -33,16 +42,16 @@ class AuthController extends Controller{
         Session::set("errors",Validator::getErrors());
         $this->redirect("show-form-login");
 
-        
-        
-
        // 
     }
 
     public function logout()
     {
-
-        
+       Session::unset("user");
+       Session::unset("details");
+       Session::unset("total");
+       Session::destroy();
+       $this->redirect("show-form-login"); 
     }
 
 

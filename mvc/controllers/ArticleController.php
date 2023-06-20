@@ -1,8 +1,9 @@
-<?php 
+<?php
+require_once './../models/CategorieModel.php';
 require_once './../models/ArticleModel.php';
 require_once './../models/ArticleVenteModel.php';
 require_once './../models/ArticleConfModel.php';
-require_once './../models/CategorieModel.php';
+
 
 class ArticleController extends Controller{
  

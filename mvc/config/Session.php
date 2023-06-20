@@ -32,5 +32,7 @@ class Session{
     session_unset();
     session_destroy();//Supprimer le tableau $_SESSION
   }
+
+  
     
 }

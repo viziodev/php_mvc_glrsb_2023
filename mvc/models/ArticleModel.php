@@ -1,17 +1,23 @@
 <?php 
 class ArticleModel extends Model{
- protected int $id;
- protected string $libelle;
- protected float $prixAchat;
+protected int $id;
+ public string $libelle;
+ public float $prixAchat;
  protected int $qteStock;
  protected string $type;
  protected int $categorieID;
+
+ //ManyToOne Navigabilite
+ protected CategorieModel $categorieModel;
+ public function categorie(){
+      return $this->categorieModel->findById($this->categorieID);  
+ }
 
  public function __construct()
  {
      parent::__construct();
      $this->table="article";
- 
+     $this->categorieModel=new CategorieModel;
  }
  /**
   * Get the value of libelle
@@ -131,11 +137,6 @@ public function insert($data=null):int{
        ]);
    return  $stm->rowCount() ;
 }
-
-
-
- 
-
 
  public function getCategorieID()
  {

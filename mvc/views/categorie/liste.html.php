@@ -1,4 +1,5 @@
 <?php
+if(!Autorisation::hasRole("Admin")) Helper::redirect("article");
    $errors=[];
    if(Session::isset("errors")){
       $errors=Session::get("errors");

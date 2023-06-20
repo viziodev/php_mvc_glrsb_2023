@@ -15,6 +15,7 @@
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Libelle</th>
+                            <th scope="col">Categorie</th>
                             <th scope="col">Type</th>
                             <th scope="col">Prix Achat</th>
                             <th scope="col">Qte Stock</th>
@@ -30,6 +31,7 @@
                         <tr class="">
                             <td scope=" row"><?=$value->getId()?> </td>
                             <td><?=$value->getLibelle()?> </td>
+                            <td><?=$value->categorie()->getLibelle()?> </td>
                             <td><?=$value->getType()?> </td>
                             <td><?=$value->getPrixAchat()?> </td>
                             <td><?=$value->getQteStock()?> </td>

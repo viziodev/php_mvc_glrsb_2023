@@ -1,3 +1,6 @@
+<?php
+   if(!Autorisation::isConnect())   Helper::redirect("show-form-login");
+?>
 <!doctype html>
 <html lang="en">
 
@@ -13,6 +16,7 @@
     <link rel="stylesheet" href="<?=BASE_URL?>css/style.css">
 
 </head>
+
 
 <body>
     <header>
