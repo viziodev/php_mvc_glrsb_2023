@@ -41,5 +41,17 @@ class Helper{
       header("location:".BASE_URL."?page=$path");
       exit(); 
  }
+
+  public static function dateToFr(string $dateEn):string{
+    $date = new DateTimeImmutable($dateEn);
+    //$date=  DateTimeImmutable::createFromFormat("Y-m-d",$dateEn);
+    return $date->format('d-m-Y');
+  }
+
+  public static function dateToEn(string $dateFr):string{
+      $date=  DateTimeImmutable::createFromFormat("d-m-Y",$dateFr);
+      return  $date->format('Y-m-d') ;
+  }
+ 
     
 }

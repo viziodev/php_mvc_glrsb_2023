@@ -43,7 +43,14 @@ if(isset($_REQUEST['page'])){
          case 'add_detail':
                $approCtrl->addDetail();
                break;
-           
+         case 'appro':
+                  $approCtrl->index();
+                  break;
+
+         case 'detail-appro':
+                     $approCtrl->detailAppro();
+                     break;
+      
 //$authCtrl
      default:
          # code...

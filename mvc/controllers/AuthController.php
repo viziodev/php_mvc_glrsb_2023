@@ -48,8 +48,6 @@ class AuthController extends Controller{
     public function logout()
     {
        Session::unset("user");
-       Session::unset("details");
-       Session::unset("total");
        Session::destroy();
        $this->redirect("show-form-login"); 
     }

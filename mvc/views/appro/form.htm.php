@@ -5,8 +5,17 @@ if(!Autorisation::hasRole("Admin")) Helper::redirect("article");
       $errors=Session::get("errors");
       Session::unset("errors");
    }
+   if(Session::isset("sms")){
+    $sms=Session::get("sms");
+    Session::unset("sms");
+ }
 ?>
 <div class="container mt-5">
+    <?php if(isset($sms)): ?>
+    <div class="alert alert-info" role="alert">
+        <?=$sms?>
+    </div>
+    <?php endif ?>
     <div class="card mt-2">
         <form class="d-flex mt-2 " style="margin-left: 20px;" method="POST" action="<?=BASE_URL?>">
             <div class="col-5 " style="margin-right: 40px;">
@@ -70,14 +79,15 @@ if(!Autorisation::hasRole("Admin")) Helper::redirect("article");
                     </tbody>
                 </table>
             </div>
-            <div class=" row mb-3  float-end" style="margin-left: 20px; margin-top:30px;">
-                <span class="text-danger ">Total : <?=$total?> CFA</span>
-            </div>
-            <div class="row float-end">
-                <form class=" d-flex mt-2 " style="margin-left: 20px;" method="POST" action="<?=BASE_URL?>">
-                    <div class="col-2  " style="margin-left: 20px; margin-top:30px;">
+            <div class="row float-end d-flex flex-column" style="margin-left: 20px; ">
+                <div class="text-danger fw-bold">Total : <?=$total?> CFA</div>
+
+                <form class=" d-flex  mt-2" style="margin-left: 20px;" method="POST" action="<?=BASE_URL?>">
+                    <div class="col-2  " style="margin-left: 20px; ">
                         <button name="" id="" class="btn btn-primary" type="Enregister" value="">Enregister</button>
                     </div>
+                    <input name="page" type="hidden" value="save-appro" />
+
                 </form>
             </div>
         </div>

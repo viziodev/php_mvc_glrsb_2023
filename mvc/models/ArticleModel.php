@@ -3,7 +3,7 @@ class ArticleModel extends Model{
 protected int $id;
  public string $libelle;
  public float $prixAchat;
- protected int $qteStock;
+ public int $qteStock;
  protected string $type;
  protected int $categorieID;
 
@@ -137,6 +137,16 @@ public function insert($data=null):int{
        ]);
    return  $stm->rowCount() ;
 }
+
+public function updateQte():int{
+    $sql="Update  $this->table set qteStock=:qteStock where id=:articleID ";
+    $stm= $this->pdo->prepare($sql);
+    $stm->execute([
+                   "qteStock"=>$this->qteStock,
+                   "articleID"=>$this->id,      
+        ]);
+    return  $stm->rowCount() ;
+ }
 
  public function getCategorieID()
  {

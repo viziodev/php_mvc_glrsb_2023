@@ -11,6 +11,7 @@
 
                     <?php if(Autorisation::hasRole("Admin")):?>
                     <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>?page=categorie">Categorie</a>
+                    <a class="nav-link " aria-current="page" href="<?=BASE_URL?>?page=appro">Approvisionnement</a>
                     <?php endif?>
                     <a class="nav-link " aria-current="page" href="<?=BASE_URL?>?page=article">Article</a>
                 </div>
@@ -21,6 +22,8 @@
                     <a class="nav-link active" aria-current="page" href="<?=BASE_URL?>?page=logout">Deconnexion</a>
                     <a class="nav-link active ml-2 text-danger" aria-current="page" href="#">
                         <?= Autorisation::userConnect()->nomComplet ." ".Autorisation::userConnect()->role?></a>
+
+
                 </div>
             </div>
         </div>

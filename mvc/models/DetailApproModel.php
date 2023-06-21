@@ -12,6 +12,16 @@ class DetailApproModel extends Model{
      }
 
      public function insert(){
-        $sql="";
+          $sql="insert into  $this->table values(NULL,:qteAppro,:approID,:articleID) ";
+          $stm= $this->pdo->prepare($sql);
+          $stm->execute(["qteAppro"=>$this->qteAppro,
+                  "approID"=> $this->approID,
+                  "articleID"=>$this->articleID,   
+           ]);
+        return  $stm->rowCount() ;
+     }
+
+     public function findDetailByAppro(){
+      
      }
 }
