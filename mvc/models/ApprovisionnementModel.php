@@ -26,6 +26,14 @@ class ApprovisionnementModel extends Model{
         return $this->executeSelect("select * from $this->table where payer=:payer",['payer'=>$payer]);
      }
      
+     public function updatePayement(int $approId):int{
+      $sql="Update  $this->table set payer=1 where id=:approId ";
+      $stm= $this->pdo->prepare($sql);
+      $stm->execute([
+                     "approId"=>$approId,   
+          ]);
+      return  $stm->rowCount() ;
+   }
      public function insert(){
       if(count($this->details)!=0){
           $sql="insert into  $this->table values(NULL,:montant,:date,0)";

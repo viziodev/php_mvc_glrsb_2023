@@ -6,6 +6,8 @@ require_once "./../controllers/CategorieController.php" ;
 require_once "./../controllers/ArticleController.php" ;
 require_once "./../controllers/AuthController.php" ;
 require_once "./../controllers/ApproController.php" ;
+//Optimiser le Router
+
 $catCtrl=new CategorieController;
 $artCtrl=new ArticleController;
 $authCtrl=new AuthController;
@@ -50,8 +52,11 @@ if(isset($_REQUEST['page'])){
          case 'detail-appro':
                      $approCtrl->detailAppro();
                      break;
+         case 'payer-appro':
+               $approCtrl->payerAppro();
+               break;
       
-//$authCtrl
+//
      default:
          # code...
          break;

@@ -21,7 +21,10 @@ class DetailApproModel extends Model{
         return  $stm->rowCount() ;
      }
 
-     public function findDetailByAppro(){
-      
+     public function findDetailByAppro(int $approId){
+        return $this->executeSelect("select  * from $this->table ap,article ar
+           where
+           ap.articleID=ar.id and
+           approID=:approID",["approID"=>$approId]);
      }
 }

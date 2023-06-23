@@ -5,28 +5,49 @@ require_once './../models/ApprovisionnementModel.php';
 class ApproController extends Controller{
     private ArticleConfModel  $articleConfModel; 
     private ApprovisionnementModel $approModel;
-    
+    private DetailApproModel $detailModel;
     public function __construct()
     {
       parent::__construct();
       $this->articleConfModel=new ArticleConfModel;
       $this->approModel=new ApprovisionnementModel;
+      $this->detailModel=new DetailApproModel;
+    }
+    
+    public function payerAppro(){
+        try {
+         $idAppro=$_GET['id-appro'];
+         if($this->approModel->updatePayement($idAppro)!=0){
+            Session::set("sms","Approvisionnement a ete paye");
+            $this->redirect("appro"); 
+         }
+       } catch (\Throwable $th) {
+          $this->redirect("appro");
+       }
     }
     public function detailAppro(){
       
        try {
             $idAppro=$_GET['id-appro'];
             $appro= $this->approModel->findById($idAppro);
+            $details=$this->detailModel->findDetailByAppro($idAppro);
+            //Helper::dd($details[0]->libelle);
        } catch (\Throwable $th) {
           $this->redirect("appro");
        } 
 
        $this->renderView("appro/detail.htm.php",[
-         "appro"=> $appro
+         "appro"=> $appro,
+         "details"=> $details
      ]);
     }
     public function index(){
-      $appro=$this->approModel->findApproByPaiement();
+      //Filtre
+      $filtre=false;
+      if(isset($_POST['page'])){
+            $filtre=$_POST['payer']==1?true:false;
+      }
+      $appro=$this->approModel->findApproByPaiement($filtre);
       $this->renderView("appro/liste.htm.php",[
          "appros"=>  $appro
      ]); 
@@ -104,7 +125,6 @@ class ApproController extends Controller{
                 $details[$pos]['qte']+=$_POST['qteAppro'];
                 $details[$pos]['montant']+=$montant;
              }
-             
              $total+=$montant;
              Session::set("total",$total);
              Session::set("details",  $details);
