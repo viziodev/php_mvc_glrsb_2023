@@ -1,7 +1,9 @@
 <?php
+use App\Core\Session;
    $errors=[];
    if(Session::isset("errors")){
-      $errors=Session::get("errors");
+      $errors=Session::get("errors"); 
+      $errors=$errors->firstOfAll();
       Session::unset("errors");
    }
 ?><div class="container mt-5 w-50">

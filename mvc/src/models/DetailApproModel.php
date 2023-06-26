@@ -1,4 +1,6 @@
 <?php 
+namespace App\Models;
+use App\Core\Model;
 class DetailApproModel extends Model{
     public int $id;
     public int $qteAppro;

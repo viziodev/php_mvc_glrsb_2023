@@ -1,5 +1,5 @@
 <?php 
-
+namespace App\Core; 
 class Controller{
     protected $layout="base";
     public function __construct()

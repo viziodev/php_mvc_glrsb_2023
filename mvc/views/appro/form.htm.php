@@ -1,4 +1,7 @@
 <?php
+use App\Core\Autorisation;
+use App\Core\Helper;
+use App\Core\Session;
 if(!Autorisation::hasRole("Admin")) Helper::redirect("article");
    $errors=[];
    if(Session::isset("errors")){

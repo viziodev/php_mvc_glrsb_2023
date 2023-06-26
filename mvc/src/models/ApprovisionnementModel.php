@@ -1,4 +1,6 @@
 <?php 
+namespace App\Models;
+use App\Core\Model;
 class ApprovisionnementModel extends Model{
     public int $id;
     public float $montant;
@@ -18,7 +20,7 @@ class ApprovisionnementModel extends Model{
          $this->detailAppro=new DetailApproModel;
          $this->articleModel=new ArticleModel ;
          
-         $date = new DateTimeImmutable();
+         $date = new \DateTimeImmutable();
          $this->date=$date->format('Y-m-d');
        // $this->date=new DateTime();
      }

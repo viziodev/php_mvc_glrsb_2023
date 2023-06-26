@@ -1,16 +1,7 @@
 <?php 
+namespace App\Core; 
 class Helper{
-   public static function  dump($data){
-    echo "<pre>";
-       var_dump($data); 
-    echo "</pre>";
-  
-   }
-   public static function  dd($data){
-      self::dump($data);
-      die;
-   }
-
+   
      public static function errorField(array $error,$field){
         if(array_key_exists($field,$error)) echo"is-invalid"  ; 
     }
@@ -41,15 +32,16 @@ class Helper{
       header("location:".BASE_URL."?page=$path");
       exit(); 
  }
-
+//Toutes les classes de PHP se trouvent dans  
+//un namespace racine ==>\
   public static function dateToFr(string $dateEn):string{
-    $date = new DateTimeImmutable($dateEn);
+    $date = new \DateTimeImmutable($dateEn);
     //$date=  DateTimeImmutable::createFromFormat("Y-m-d",$dateEn);
     return $date->format('d-m-Y');
   }
 
   public static function dateToEn(string $dateFr):string{
-      $date=  DateTimeImmutable::createFromFormat("d-m-Y",$dateFr);
+      $date=  \DateTimeImmutable::createFromFormat("d-m-Y",$dateFr);
       return  $date->format('Y-m-d') ;
   }
  

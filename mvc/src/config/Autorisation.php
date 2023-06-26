@@ -1,6 +1,6 @@
-<?php 
+<?php
+namespace App\Core; 
 class Autorisation{
-    
     public static function isConnect():bool{
         return Session::isset("user");
     }

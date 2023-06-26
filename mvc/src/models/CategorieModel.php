@@ -1,4 +1,6 @@
 <?php
+namespace App\Models;
+use App\Core\Model;
  class CategorieModel extends Model{
     private int $id;
     private string $libelle;

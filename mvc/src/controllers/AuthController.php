@@ -1,5 +1,11 @@
 <?php 
-require_once './../models/UserModel.php';
+namespace App\Controllers; 
+use App\Core\Helper;
+use App\Core\Session;
+use App\Core\Controller;
+use App\Models\UserModel;
+use App\Core\Autorisation;
+use Rakit\Validation\Validator;
 class AuthController extends Controller{
     private UserModel $userModel; 
     public function __construct()
@@ -17,9 +23,21 @@ class AuthController extends Controller{
 
     public function login()
     {
-        Validator::isEmail($_POST['login'],'login');
-        Validator::isVide($_POST['password'],'password');
-        if(Validator::validate()){
+       // Validator::isEmail($_POST['login'],'login');
+        //Validator::isVide($_POST['password'],'password');
+        $validator = new Validator;
+        $validation = $validator->make($_POST, [
+          'login'                 => 'required|email',
+          'password'              => 'required|min:3',
+        ],[
+           'required' => 'Le champ :attribute est obligatoire',
+           'email' => "Le :attribute n'est pas un email",
+           'min' => "Le :attribute doit avoir au minimun :min ",
+   // etc
+        ]);
+      
+        $validation->validate();
+        if(!$validation->fails()){
              extract($_POST);
              $user= $this->userModel->findUserByLoginAndPassword($login,$password) ;
              if($user){
@@ -34,12 +52,13 @@ class AuthController extends Controller{
                   }
                   
              }else{
-                Validator::addErrors("error-connexion","Login ou Mot de Passe Incorrect");
+                //Validator::addErrors("error-connexion","Login ou Mot de Passe Incorrect");
              }
            
         }
-        
-        Session::set("errors",Validator::getErrors());
+        $errors=$validation->errors();
+       // dd(  $errors);
+        Session::set("errors", $errors);
         $this->redirect("show-form-login");
 
        // 

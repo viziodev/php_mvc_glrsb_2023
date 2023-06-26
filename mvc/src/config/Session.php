@@ -1,4 +1,5 @@
 <?php 
+namespace App\Core; 
 class Session{ 
   public static function start(){
     //Session pas Ouverte

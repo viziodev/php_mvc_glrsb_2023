@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace App\Models;
 class ArticleVenteModel extends ArticleModel{
     private string  $dateProd;
     public function __construct()

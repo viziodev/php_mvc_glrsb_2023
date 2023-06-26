@@ -1,4 +1,6 @@
-<div class="container-fluid">
+<?php
+use App\Core\Autorisation;
+ ?><div class="container-fluid">
     <nav class="navbar navbar-expand-sm navbar-light bg-light ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Gestion Atelier de Couture</a>

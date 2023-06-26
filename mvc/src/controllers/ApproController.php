@@ -1,7 +1,15 @@
 <?php 
-require_once './../models/ArticleConfModel.php';
-require_once './../models/DetailApproModel.php';
-require_once './../models/ApprovisionnementModel.php';
+namespace App\Controllers; 
+use App\Core\Controller;
+use App\Core\Session;
+use App\Core\Helper;
+use App\Models\ArticleConfModel;
+use App\Models\ApprovisionnementModel;
+use App\Models\DetailApproModel;
+
+//package ==> namespace
+//Chargement automatique 
+//import pakadge.classe   ==> use  namespace\Classe
 class ApproController extends Controller{
     private ArticleConfModel  $articleConfModel; 
     private ApprovisionnementModel $approModel;

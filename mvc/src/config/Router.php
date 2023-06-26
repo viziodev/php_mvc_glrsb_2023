@@ -1,11 +1,11 @@
 <?php 
-
+namespace App\Core; 
+use App\Controllers\CategorieController;
+use App\Controllers\ArticleController;
+use App\Controllers\AuthController;
+use App\Controllers\ApproController;
 //Router ==> Charger les Controller et d'executer
 //une action du controller
-require_once "./../controllers/CategorieController.php" ;
-require_once "./../controllers/ArticleController.php" ;
-require_once "./../controllers/AuthController.php" ;
-require_once "./../controllers/ApproController.php" ;
 //Optimiser le Router
 
 $catCtrl=new CategorieController;

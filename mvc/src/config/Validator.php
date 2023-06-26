@@ -1,4 +1,5 @@
 <?php 
+namespace App\Core; 
 class Validator{
         private static array  $errors=[];
         public static function isVide($value,$key,$message="champ obligatoire"):bool{

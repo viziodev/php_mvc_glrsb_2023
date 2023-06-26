@@ -1,4 +1,6 @@
 <?php
+use App\Core\Autorisation;
+use App\Core\Helper;
 if(!Autorisation::hasRole("Admin")) Helper::redirect("article");
    
 ?>

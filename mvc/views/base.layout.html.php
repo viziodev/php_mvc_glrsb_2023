@@ -1,4 +1,7 @@
 <?php
+use App\Core\Autorisation;
+use App\Core\Helper;
+
    if(!Autorisation::isConnect())   Helper::redirect("show-form-login");
 ?>
 <!doctype html>

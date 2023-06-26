@@ -1,9 +1,12 @@
 <?php
-require_once './../models/CategorieModel.php';
-require_once './../models/ArticleModel.php';
-require_once './../models/ArticleVenteModel.php';
-require_once './../models/ArticleConfModel.php';
-
+namespace App\Controllers; 
+use App\Core\Controller;
+use App\Core\Session;
+use App\Core\Validator;
+use App\Models\ArticleModel;
+use App\Models\ArticleConfModel;
+use App\Models\CategorieModel;
+use App\Models\ArticleVenteModel;
 
 class ArticleController extends Controller{
  

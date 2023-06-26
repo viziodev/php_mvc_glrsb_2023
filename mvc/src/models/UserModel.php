@@ -1,4 +1,6 @@
 <?php
+namespace App\Models;
+use App\Core\Model;
  class UserModel extends Model{
     public int $id;
     public string $nomComplet;

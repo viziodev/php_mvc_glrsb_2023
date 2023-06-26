@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace App\Core;  
 class Model {
     protected string $table;
     protected \PDO $pdo;
